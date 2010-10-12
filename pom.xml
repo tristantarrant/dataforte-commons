@@ -27,7 +27,7 @@
 		<site>
 			<id>ftp.dataforte.net</id>
 			<name>Dataforte site</name>
-			<url>ftp://ftp.dataforte.net/www.dataforte.net/software/${project.artifactId}/</url>
+			<url>ftp://ftp.dataforte.net/www.dataforte.net/software/</url>
 		</site>
 	</distributionManagement>
 
@@ -66,6 +66,6 @@
 	<scm>
 		<connection>scm:git:http://github.com/tristantarrant/dataforte-commons.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/tristantarrant/dataforte-commons.git</developerConnection>
-		<url>http://github.com/tristantarrant/dataforte-commonsp</url>
+		<url>http://github.com/tristantarrant/dataforte-commons</url>
 	</scm>
 </project>
