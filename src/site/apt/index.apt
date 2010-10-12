@@ -1,0 +1,11 @@
+Dataforte Commons
+
+Introduction
+
+	Dataforte Commons is a set of utility classes which perform various functions. They can be subdivided in the following categories
+	
+Resource Utilities
+
+	These classes provide utilities for scanning resources in a variety of environments (jars, packages, webapps, etc)
+	
+IO Utilities
