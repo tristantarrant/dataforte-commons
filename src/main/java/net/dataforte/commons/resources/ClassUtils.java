@@ -59,7 +59,7 @@ public class ClassUtils {
 							urls.add(new URL(res+"/"+e.getName().substring(folder.length()+1)));  // FIXME: fully qualified name
 						}
 					}
-				} else if(resProtocol.equalsIgnoreCase("vfszip")) { // JBoss 5+
+				} else if(resProtocol.equalsIgnoreCase("vfszip")||resProtocol.equalsIgnoreCase("vfs")) { // JBoss 5+
 					try {
 						Object content = res.getContent();
 						Method getChildren = content.getClass().getMethod("getChildren");
