@@ -46,7 +46,7 @@ public interface IResourceResolver {
 	/**
 	 * Obtains an {@link InputStream} to the specified named resource and adds
 	 * an {@link Observer} which will be invoked when the resource changes (using a {@link Thread})
-	 * using a default check delay (currently 5 seconds)
+	 * using the specified delay
 	 * 
 	 * @param name the name of the resource
 	 * @param observer the {@link Observer} to invoke when the resource changes

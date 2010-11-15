@@ -37,7 +37,7 @@ public class ServletContextResourceResolver extends AResourceResolver {
 	}
 	
 	public ServletContextResourceResolver(ServletContext servletContext, IResourceResolver fallbackResolver) {
-		this.servletContext =servletContext;
+		this.servletContext = servletContext;
 		this.fallbackResolver = fallbackResolver;
 	}
 
@@ -63,5 +63,4 @@ public class ServletContextResourceResolver extends AResourceResolver {
 		}
 		return is;
 	}
-
 }
