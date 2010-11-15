@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>net.dataforte</groupId>
 		<artifactId>dataforte-parent</artifactId>
-		<version>3</version>
+		<version>5</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -27,7 +27,7 @@
 		<site>
 			<id>ftp.dataforte.net</id>
 			<name>Dataforte site</name>
-			<url>ftp://ftp.dataforte.net/www.dataforte.net/software/</url>
+			<url>ftp://ftp.dataforte.net/www.dataforte.net/software/${project.artifactId}</url>
 		</site>
 	</distributionManagement>
 
