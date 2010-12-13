@@ -11,7 +11,10 @@ import javax.servlet.ServletContext;
 /**
  * A resource resolver which attempts to resolve resources by first checking
  * in the system-specific application configuration folder (see {@link SystemUtils})
- * and then falls back to using the @link {@link ServletContextResourceResolver}
+ * and then falls back to using the @link {@link ServletContextResourceResolver}.
+ * To determine the application's name, the context path (without the starting /) is used.
+ * In case the application is deployed to the root context, then the servlet's context name
+ * will be used (the display-name element in the web.xml descriptor)
  * 
  * @author Tristan Tarrant
  */
@@ -19,8 +22,8 @@ public class WebAppResourceResolver extends AResourceResolver {
 	ServletContextResourceResolver servletCtxResolver;
 	String localResourceFolder;
 	
-	public WebAppResourceResolver(ServletContext servletContext) {
-		this(servletContext, servletContext.getServletContextName());
+	public WebAppResourceResolver(ServletContext servletContext) {		
+		this(servletContext, servletContext.getContextPath().length()>1?servletContext.getContextPath().substring(1):servletContext.getServletContextName());
 	}
 	
 	public WebAppResourceResolver(ServletContext servletContext, String appName) {
