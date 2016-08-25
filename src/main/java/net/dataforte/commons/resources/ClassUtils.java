@@ -26,8 +26,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Vector;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class ClassUtils {
 	
@@ -56,7 +59,7 @@ public class ClassUtils {
 					JarFile jar = conn.getJarFile();
 					for (JarEntry e : Collections.list(jar.entries())) {
 						if (e.getName().startsWith(folder) && !e.getName().endsWith("/")) {
-							urls.add(new URL(res+"/"+e.getName().substring(folder.length()+1)));  // FIXME: fully qualified name
+							urls.add(new URL(joinUrl(res.toString(), "/"+e.getName().substring(folder.length()+1))));  // FIXME: fully qualified name
 						}
 					}
 				} else if(resProtocol.equalsIgnoreCase("vfszip")||resProtocol.equalsIgnoreCase("vfs")) { // JBoss 5+
@@ -92,7 +95,7 @@ public class ClassUtils {
 				// Get the list of the files contained in the package
 				String[] files = directory.list();
 				for (String file : files) {
-					urls.add(new URL("file://"+directory.getAbsolutePath()+File.separator+file));
+					urls.add(new URL("file:///"+joinPath(directory.getAbsolutePath(),file)));
 				}
 			} else {
 				throw new IOException(folder + " (" + directory.getPath() + ") does not appear to be a valid folder");
@@ -102,6 +105,35 @@ public class ClassUtils {
 		urls.toArray(urlsA);
 		return urlsA;
 	}
+
+	private static String joinPath(String... paths) {
+		return joinParts(File.separator, paths);
+	}
+
+	private static String joinUrl(String... paths) {
+		return joinParts("/", paths);
+	}
+
+	private static String joinParts(String separator, String... paths) {
+		Vector<String> trimmed = new Vector<String>();
+		int pos = 0;
+		int last = paths.length-1;
+		for (String path : paths) {
+			String trimmedPath;
+			if (pos == 0)
+				trimmedPath = StringUtils.stripEnd(path , separator);
+			else if (pos == last)
+				trimmedPath = StringUtils.stripStart(path , separator);
+			else
+				trimmedPath = StringUtils.strip(path , separator);
+			trimmed.add(trimmedPath);
+			pos+=1;
+		}
+		String joined = String.join(separator, trimmed);
+		return joined;
+	}
+
+	
 
 	/**
 	 * Returns all classes within the specified package. Supports filesystem, JARs and JBoss VFS
